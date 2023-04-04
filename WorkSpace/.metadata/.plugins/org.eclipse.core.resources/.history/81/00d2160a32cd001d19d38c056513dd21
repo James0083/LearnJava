@@ -1,0 +1,40 @@
+package day02;
+import java.util.*;
+import java.sql.*;
+
+public class MemoInsert {
+
+	public static void main(String[] args) 
+	throws ClassNotFoundException, SQLException
+	{
+		Scanner sc = new Scanner(System.in);
+		System.out.println("작성자 : ");
+		String name = sc.nextLine();
+		System.out.println("메모 내용 : ");
+		String msg = sc.nextLine();
+		System.out.println(name+"/"+msg);
+		
+		//1. 드라이버 로딩
+		Class.forName("oracle.jdbc.driver.OracleDriver");
+		
+		String url = "jdbc:oracle:thin:@localhost:1521:XE";
+		String user="scott", pwd="tiger";
+		
+		//2. DB 연결
+		Connection con = DriverManager.getConnection(url, user, pwd);
+		System.out.println("DB연결 성공!");
+		
+		//3. SQL문 작성
+		String sql = "INSERT INTO MEMO(no, name, msg, wdate)";
+				sql+=" VALUES (MEMO_SEQ.NEXTVAL, ";
+				sql+="'"+name+"', '"+msg+"', SYSDATE)";
+		System.out.println(sql);
+		
+		//4. Statement 얻어오기
+		
+		//5. execute() 호출
+		
+		//6. DB자원 반납
+	}
+
+}

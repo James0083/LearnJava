@@ -1,0 +1,29 @@
+package Recipe_Management;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+public class HomeGUI extends JFrame {
+
+	Container cp;
+	JPanel p = new JPanel();
+
+	public HomeGUI() {
+		super(":: 레시피 ::");
+		cp = this.getContentPane();
+		cp.add(p, "Center");
+		p.setBackground(Color.white);
+
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+
+	public static void main(String[] args) {
+		HomeGUI my = new HomeGUI();
+		my.setSize(500, 500);
+		//my.setLocation(300,300);
+		my.setVisible(true);
+
+	}
+
+}

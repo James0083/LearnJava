@@ -1,0 +1,70 @@
+package Recipe_Management;
+
+import java.util.ArrayList;
+
+class Tools{
+	private boolean Oven;
+	private boolean Stove;
+	private boolean Pan;
+	ArrayList<String> toolsArr = new ArrayList<>();
+	
+	public Tools() {
+		this(false, false, false);
+	}
+	public Tools(boolean oven, boolean stove, boolean pan) {
+		this.Oven=oven;
+		this.Stove=stove;
+		this.Pan=pan;
+	}
+	
+	
+	public void setOven(boolean b) {
+		this.Oven = b;
+	}
+	public void setStove(boolean b) {
+		this.Stove = b;
+	}
+	public void setPan(boolean b) {
+		this.Pan = b;
+	}
+	public boolean getOven() {
+		return this.Oven;
+	}
+	public boolean getStove() {
+		return this.Stove;
+	}
+	public boolean getPan() {
+		return this.Pan;
+	}
+	
+	public void addTools(String tool) {
+		toolsArr.add(tool);
+	}
+	public ArrayList getTools() {
+		return toolsArr;
+	}
+}
+
+class Ingredient{
+	private String ingre;
+	private int quantity;
+	private String unit;
+	
+	public Ingredient() {
+		// TODO Auto-generated constructor stub
+	}
+	public Ingredient(String ingre, int quantity, String unit) {
+		this.ingre = ingre;
+		this.quantity = quantity;
+		this.unit = unit;
+	} 
+}
+
+public class Recipes {
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

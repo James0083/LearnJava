@@ -1,0 +1,11 @@
+package Recipe_Management;
+
+import javax.swing.*;
+
+public class AddPage extends JPanel{
+
+	public AddPage() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

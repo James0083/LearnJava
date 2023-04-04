@@ -1,0 +1,9 @@
+package Recipe_Management;
+
+public class EditPage {
+
+	public EditPage() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

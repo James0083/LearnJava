@@ -1,0 +1,40 @@
+package day02;
+import java.sql.*;
+import common.util.*;
+
+public class MemoSelect {
+
+	public static void main(String[] args) throws SQLException{
+		Connection con=DBUtil.getCon();
+//		System.out.println(con);
+		String sql="SELECT no, name, msg, wdate FROM memo ORDER BY no DESC";
+		
+		Statement st=con.createStatement();
+		
+		boolean b= st.execute(sql); //SELECT문이면 true반환
+		System.out.println("b: "+b);
+		if(b) {//select문이라면 => 결과 테이블 (ResultSet) 
+			ResultSet rs=st.getResultSet();
+			//boolean next():
+			
+			while (rs.next()) {
+				int no=rs.getInt("no");
+				String name=rs.getString("name");
+				String msg=rs.getString("msg");
+				java.sql.Date wdate=rs.getDate("wdate");
+				System.out.println(no+"\t"+name+"\t"+msg+"\t"+wdate);
+			}//while--------------
+			
+			if(rs!=null) rs.close();
+			
+		}else {//select문이 아니라면 (ex DML, DDL, ...)
+			int n=st.getUpdateCount();
+			System.out.println(n+"개의 레코드가 변경되었습니다");
+		}
+		
+		if(st!=null) st.close();
+		if(con!=null) con.close();
+
+	}
+
+}

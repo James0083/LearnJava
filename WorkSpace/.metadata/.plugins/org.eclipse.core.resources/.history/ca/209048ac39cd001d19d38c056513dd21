@@ -1,0 +1,12 @@
+package day02;
+import java.sql.*;
+import common.util.*;
+
+public class MemoSelect {
+
+	public static void main(String[] args) throws SQLException{
+		Connection con=DBUtil.getCon();
+
+	}
+
+}

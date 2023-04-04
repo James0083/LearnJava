@@ -1,0 +1,30 @@
+package Recipe_Management;
+
+import java.awt.*;
+import javax.swing.*;
+
+public class AddPage extends JPanel //implements ActionListener
+{
+	// Fields
+	// 음식이름, 필요한 도구, 재료, 과정
+	JRadioButton rbOven, rbStove, rbPan;
+	JLabel lbTitle, lbTools, lbIngredients, lbStep;
+	JTextField tfTitle, tfTools, tfIngredients, tfStep;
+	JButton btSetTitle, btAddTools, btAddIngredients, btAddStep;
+	JTextArea taResult;
+	
+	public AddPage() {
+		this.setLayout(new GridLayout(5,1,3,0));
+		add(lbTitle = new JLabel("요리 이름 : "));
+		add(tfTitle = new JTextField(10));
+		
+		add(lbTools = new JLabel("도구 추가 : "));
+		
+		add(lbIngredients = new JLabel("재료 추가 : "));
+		
+		add(lbStep = new JLabel("단계 추가 : "));
+		
+		
+	}
+
+}

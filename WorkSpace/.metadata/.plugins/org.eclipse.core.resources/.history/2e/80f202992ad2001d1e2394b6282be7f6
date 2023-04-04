@@ -1,0 +1,62 @@
+package Recipe_Management;
+
+import java.awt.*;
+import javax.swing.*;
+
+public class AddPage extends JPanel //implements ActionListener
+{
+	// Fields
+	// 음식이름, 필요한 도구, 재료, 과정
+	JPanel pN = new JPanel();
+	JPanel pS = new JPanel();
+	JPanel pN_sub_1, pN_sub_2, pN_sub_3, pN_sub_4;
+	JRadioButton rbOven, rbStove, rbPan;
+	JLabel lbTitle, lbTools, lbIngredients, lbStep;
+	JTextField tfTitle, tfTools, tfIngredients, tfStep;
+	JButton btSetTitle, btAddTools, btAddIngredients, btAddStep, btComplete;
+	JTextArea taPreview;
+	
+	String previewStr = "";
+	
+	public AddPage() {
+		this.setLayout(new GridLayout(2,1));
+		pN.setLayout(new GridLayout(4,1));
+		add(pN, "North");
+		add(pS);
+		pN.add(pN_sub_1 = new JPanel());
+		pN.add(pN_sub_2 = new JPanel());
+		pN.add(pN_sub_3 = new JPanel());
+		pN.add(pN_sub_4 = new JPanel());
+
+		pN_sub_1.setLayout(new FlowLayout(FlowLayout.LEFT));
+		pN_sub_1.add(lbTitle = new JLabel("요리 이름 : "));
+		pN_sub_1.add(tfTitle = new JTextField(10));
+		pN_sub_1.add(btSetTitle = new JButton("적용"));
+
+		pN_sub_2.setLayout(new FlowLayout(FlowLayout.LEFT));
+		pN_sub_2.add(lbTools = new JLabel("도구 추가 : "));
+		pN_sub_2.add(tfTools = new JTextField(10));
+		pN_sub_2.add(btAddTools = new JButton("추가"));
+
+		pN_sub_3.setLayout(new FlowLayout(FlowLayout.LEFT));
+		pN_sub_3.add(lbIngredients = new JLabel("재료 추가 : "));
+		pN_sub_3.add(tfIngredients = new JTextField(10));
+		pN_sub_3.add(btAddIngredients = new JButton("추가"));
+
+		pN_sub_4.setLayout(new FlowLayout(FlowLayout.LEFT));
+		pN_sub_4.add(lbStep = new JLabel("단계 추가 : "));
+		pN_sub_4.add(tfStep = new JTextField(25));
+		pN_sub_4.add(btAddStep = new JButton("추가"));
+		
+		taPreview = new JTextArea(previewStr);
+		JScrollPane sp=new JScrollPane(taPreview);
+		taPreview.setEditable(false);
+		add(sp, "Center");
+		
+		
+		
+		pS.add(btComplete=new JButton("완료︎︎"));
+		
+	}
+
+}
