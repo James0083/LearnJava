@@ -3,7 +3,37 @@ package memo.app;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-
+import java.text.*;
+import java.util.*;
+/**
+ * --------------------------------------
+ * @author 유재원
+ * 작엉일: 2023-04-05
+ * 버전 : 1.1
+ * 한줄 메모장 애플리케이션의 화면을 담당하는 클래스
+ * --------------------------------------
+ * MFC(c++),JFC(java swing)
+ * MVC 패턴===> 웹 mvc패턴 도입
+ * 
+ * 모델1 방식 : mvc패턴을 적용하지 않을 때
+ * 모델2 방식 : mvc패턴 적용
+ * 
+ * Model  :  DB접근 로직(DB처리 로직을 갖는다. CRUD) [Persistence Layer-영속성 계층]
+ * 			VO, DAO
+ * View   :  화면단 (Presentatioin Layer) - Swing, HTML(JSP)
+ * 
+ * Controller: Model View사이에서 제어하는 역할을 담당하는 계층. Event Handler,  Servlet/SpringFramework Controller
+ * 
+ * MemoAppView:=> GUI /View 담당 [Presentatioin Layer]
+ * XXXDAO: DB접근 로직(DB처리 로직을 갖는다. CRUD)
+ * 		   Data Access Object  [Persistence Layer-영속성 계층]
+ * XXXVO/XXXDTO [Domain Layer]
+ *  Value Object/ Data Transfer Object
+ * 	: 사용자가 입력한 값을 담거나 DB에서 가져온 값을 갖고 있는 객체
+ * --------------------------------------
+ * javadoc vm옵션
+ * -locale ko_KR -encoding UTF-8 -charset UTF-8 -docencoding UTF-8
+ */
 public class MemoAppView extends JFrame {
 
 	Container cp;
@@ -19,6 +49,8 @@ public class MemoAppView extends JFrame {
 	JButton btAdd, btList, btDel, btEdit, btEditEnd, btFind;
 	JLabel lbTitle, lbName, lbDate, lbNo, lbMsg;
 	JTextField tfName, tfDate, tfNo, tfMsg;
+	
+	MemoHandler handler;//Controller
 
 	public MemoAppView() {
 		super("::MemoAppView::");
@@ -58,7 +90,8 @@ public class MemoAppView extends JFrame {
 		tfDate.setEditable(false);
 		tfNo.setEditable(false);
 		tfDate.setForeground(Color.blue);
-		tfDate.setText("2023-03-31");
+		String date =this.getSysDate(); //오늘 날짜 얻어오기
+		tfDate.setText(date);
 		tfDate.setFont(new Font("Serif", Font.BOLD, 14));
 		tfDate.setHorizontalAlignment(JTextField.CENTER);
 		
@@ -68,9 +101,45 @@ public class MemoAppView extends JFrame {
 		pS.add(btEdit=new JButton("글수정︎︎"));
 		pS.add(btEditEnd=new JButton("글수정 처리︎︎"));
 		pS.add(btFind=new JButton("글검색"));
+		//리스너 부착-----
+		//***** MemoHandler와 MemoAppView가 연동하기 위해서는 생성자에서 this를 넘겨준다 *****
+		handler = new MemoHandler(this);
+		btAdd.addActionListener(handler);
+		btList.addActionListener(handler);
+		btDel.addActionListener(handler);
+		btEdit.addActionListener(handler);
+		btEditEnd.addActionListener(handler);
+		btFind.addActionListener(handler);
 
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	}
+	}// 생성자--------------------------
+	
+	/** 메시지를 대화창에 보여주는 메서
+	 * 	 */
+	public void showMessage(String str) {
+		JOptionPane.showMessageDialog(this, str);
+	}//---------------------------
+	
+	/** 입력 필드를 모두 빈 문자열로 초기화하는 메서드
+	 * 	 */
+	public void clearInput() {
+		tfNo.setText("");
+		tfName.setText("");
+		tfMsg.setText("");
+		tfName.requestFocus();//입력포커스
+	}//--------------------------
+	
+	/** 현재 날짜를 yyyy-MM-dd 포맷의 문자열로 변환하여 반환하는 메서드 (mm은 분)*/
+	public String getSysDate() {
+		Date today = new Date(); //java.util.Date
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); //java.text.SimpleDateFormat
+		String str = sdf.format(today);
+		return str;
+		/*
+		 * Java		: yy:년도		MM: 월	dd: 일	hh: 시간		mm: 분	ss: 초
+		 * Oracle	: yy:년도		mm: 월	dd: 일	hh: 시간		mi: 분	ss: 초
+		 */
+	}//---------------------------
 
 	public static void main(String[] args) {
 		MemoAppView my = new MemoAppView();

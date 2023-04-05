@@ -1,0 +1,9 @@
+package memo.app;
+
+public class MemoDAO {
+
+	public MemoDAO() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

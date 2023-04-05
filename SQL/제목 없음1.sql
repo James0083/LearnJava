@@ -32,3 +32,12 @@ select * from emp;
 delete from emp where empno=8000;
 commit;
 
+--2023-04-05
+select * from memo order by 1 desc;
+
+
+
+
+
+
+

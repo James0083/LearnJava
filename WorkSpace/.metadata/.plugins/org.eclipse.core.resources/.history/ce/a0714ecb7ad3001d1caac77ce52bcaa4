@@ -1,0 +1,9 @@
+package memo.app;
+
+public class MemoVO {
+
+	public MemoVO() {
+		// TODO Auto-generated constructor stub
+	}
+
+}
