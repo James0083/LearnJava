@@ -14,13 +14,14 @@ public class SearchPage extends JPanel{
 	public SearchPage() {
 		setLayout(new BorderLayout());
 		add(pN, "North");
-		add(taSearch, "Center");
+		JScrollPane spSearch=new JScrollPane(taSearch);
+		add(spSearch, "Center");
 		pN.add(lbSearch = new JLabel("검색어 입력 : "));
 		pN.add(tfSearch = new JTextField(15));
 		pN.add(btSearch = new JButton("검색"));
 		
 		taSearch.setEditable(false);
-		taSearch.setText("---===---\n\n===---===");
+		//taSearch.setText("---===---\n\n===---===");
 		
 	}
 }

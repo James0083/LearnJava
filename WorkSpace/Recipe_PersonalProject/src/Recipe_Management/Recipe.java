@@ -95,6 +95,7 @@ public class Recipe {
 	public void setFName(String name) {
 		this.fName=name;
 	}
+	
 	public String getFName() {
 		return this.fName;
 	}
@@ -102,6 +103,15 @@ public class Recipe {
 	public boolean addSteps(String explain) {
 		return recipeStep.add(explain);
 	}
+	
+	public void addIngredients(Ingredient ingre) {
+		ingreSet.add(ingre);
+	}
+	
+	public void addTool(String tool) {
+		toolsArr.add(tool);
+	}
+	
 	/*
 	public void printSteps() {
 		System.out.println("arrList2.size(): "+recipeStep.size());
@@ -110,11 +120,7 @@ public class Recipe {
 			System.out.println((i++) +"@"+str);
 		}
 	}
-	*/
-	public void addIngredients(Ingredient ingre) {
-		ingreSet.add(ingre);
-	}
-	/*
+
 	public void printIngredients() {
 		System.out.println("ingreSet.size(): "+ingreSet.size());
 		Iterator<Ingredient> it=ingreSet.iterator();
@@ -123,12 +129,7 @@ public class Recipe {
 			System.out.println(ing.getIngre()+" : "+ing.getQuantity()+ing.getUnit());
 		}
 	}
-	*/
-	
-	public void addTool(String tool) {
-		toolsArr.add(tool);
-	}
-	/*
+
 	public ArrayList<String> getTools() {
 		return toolsArr;
 	}

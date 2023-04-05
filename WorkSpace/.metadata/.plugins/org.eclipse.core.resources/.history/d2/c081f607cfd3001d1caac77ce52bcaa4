@@ -1,0 +1,29 @@
+package Recipe_Management;
+
+import java.awt.*;
+import java.util.*;
+
+import javax.swing.*;
+
+public class ListPage extends JPanel{
+
+	ArrayList<Recipe> myRecipes;
+	JPanel pMain = new JPanel(new CardLayout());
+	JPanel p1, p2;
+	
+	public ListPage(ArrayList<Recipe> myRecipes) {
+		this.myRecipes = myRecipes;
+		
+		pMain.setBackground(Color.white);
+		pMain.add(p1, "btList");
+		pMain.add(p2, "Detail");
+		
+		for(Recipe rcp:myRecipes) {
+			JPanel pTemp = new JPanel();
+			pTemp.add(new JLabel(myRecipes.indexOf(rcp)+". "));
+			pTemp.add(new JButton(rcp.getFName()));
+			p1.add(pTemp);
+		}
+	}
+
+}

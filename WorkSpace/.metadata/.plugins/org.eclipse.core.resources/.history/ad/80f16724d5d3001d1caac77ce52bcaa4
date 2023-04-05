@@ -1,0 +1,86 @@
+package Recipe_Management;
+
+import java.awt.event.*;
+import java.util.ArrayList;
+
+import javax.swing.JOptionPane;
+
+public class RecipeHandler implements ActionListener , ItemListener {
+	
+	HomeGUI app;
+	
+	public RecipeHandler(HomeGUI mav) {
+		this.app = mav;
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e){ //[3]
+		Object obj = e.getSource();
+		if(obj==app.btList) {
+			app.card.show(app.pC, "List");
+		}else if(obj==app.btAdd) {
+			app.res = new Recipe();
+			app.card.show(app.pC, "Add");
+		}else if(obj==app.btSearch) {
+			app.card.show(app.pC, "Search");
+		}else if(obj==app.btDel) {
+			app.card.show(app.pC, "Delete");
+		}else if(obj==app.btPrint) {
+			app.card.show(app.pC, "Print");
+		}else if(obj==app.btEdit) {
+			app.card.show(app.pC, "Edit");
+		}
+		
+		else if(obj==app.pAdd.btAddTools) {
+			
+		}else if(obj==app.pAdd.btAddIngredients) {
+			
+		}else if(obj==app.pAdd.btAddStep) {
+			
+		}
+		
+		else if(obj==app.pSearch.btSearch) {
+			System.out.println(app.pSearch.tfSearch.getText());
+			ArrayList<Recipe> Srcp = app.searchRecipe(app.pSearch.tfSearch.getText());
+			for(Recipe rcp:Srcp) {
+				app.pSearch.taSearch.append(rcp.RecipeToString());
+			}
+			System.out.println("검색버튼 누름");
+		}
+	}
+	
+	public void itemStateChanged(ItemEvent e){
+		boolean selected;
+		if(e.getStateChange()==ItemEvent.SELECTED) {
+			//res.addTools(e.getItem().toString().trim());
+			selected = true;
+		}else {
+			selected = false;
+		}
+		
+		if(e.getSource()==app.pAdd.cbOven) {
+//			Oven = selected;
+			app.res.OSP.setOven(selected);
+		}else if(e.getSource()==app.pAdd.cbStove) {
+//			Stove = selected;
+			app.res.OSP.setStove(selected);
+		}else if(e.getSource()==app.pAdd.cbPan) {
+//			Pan = selected;
+			app.res.OSP.setPan(selected);
+		}else if(e.getSource()==app.pAdd.cbPot) {
+//			Pot = selected;
+			app.res.OSP.setPot(selected);
+		}
+		//----
+		app.pAdd.taPreviewTools.append(app.res.OSP.getTrues());
+		app.pAdd.taPreviewTools.setText(app.res.OSP.getTrues());
+		app.pAdd.appendToolsStr(app.res.OSP.getTrues());
+		System.out.println(app.res.OSP.getTrues());
+		JOptionPane.showMessageDialog(null, "---===---");
+		JOptionPane.showMessageDialog(null, app.res.OSP.getTrues());
+		app.pAdd.taPreviewSteps.setText("1----");
+		//---
+		app.pAdd.repaint();
+	}
+	
+}
