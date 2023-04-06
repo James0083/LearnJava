@@ -1,9 +1,0 @@
-package Recipe_Management;
-
-public class AddPage {
-
-	public AddPage() {
-		// TODO Auto-generated constructor stub
-	}
-
-}
