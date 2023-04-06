@@ -1,0 +1,63 @@
+package Recipe_Management;
+
+import java.util.*;
+
+public class Recipe {
+	private String fName;
+	Tool OSP = new Tool(false, false, false, false);
+	ArrayList<String> toolsArr = new ArrayList<>();
+	ArrayList<String> recipeStep = new ArrayList<>();
+	HashSet<Ingredient> ingreSet=new HashSet<>();
+	
+	public void setFName(String name) {
+		this.fName=name;
+	}
+	
+	public String getFName() {
+		return this.fName;
+	}
+	
+	public boolean addSteps(String explain) {
+		return recipeStep.add(explain);
+	}
+	
+	public void addIngredients(Ingredient ingre) {
+		ingreSet.add(ingre);
+	}
+	
+	public void addTool(String tool) {
+		toolsArr.add(tool);
+	}
+
+	public String RecipeToString() {
+		String rts = "========"+fName+"========\n";
+		rts += "[사용도구]\n"+OSP.getTrues();
+
+		Iterator<String> it = toolsArr.iterator();
+		if(it.hasNext()) rts += it.next();
+		
+		while(it.hasNext()) {
+			rts += ", "+it.next();
+		}
+		rts += "\n\n[재료]\n";
+		for(Ingredient ing:ingreSet) {
+			rts += ing.getIngre()+": "+ing.getQuantity()+" "
+					+ing.getUnit()+"\n";
+		}
+		rts += "\n[조리 단계]\n";
+		int i = 1;
+		for(String str:recipeStep) {
+			rts += (i++) +". "+str+"\n";
+		}
+		return rts;
+	}
+	
+	public boolean compareRecipe(String str) {
+		return str.equals(fName);
+	}
+	/*
+	public boolean containStr(String str) {
+		return fName.contains(str);
+	}
+	*/
+}

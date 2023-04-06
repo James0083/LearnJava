@@ -1,0 +1,36 @@
+package Recipe_Management;
+/**
+ * @author Jaewon You
+ * <br>
+ * 재료 클래스<br>
+ * 재료명, 양, 단위 포함<br>
+ *  */
+public class Ingredient {
+	private String ingre;
+	private int quantity;
+	private String unit;
+	
+	public Ingredient() {
+		// TODO Auto-generated constructor stub
+	}
+	public Ingredient(String ingre, int quantity, String unit) {
+		this.ingre = ingre;
+		this.quantity = quantity;
+		this.unit = unit;
+	}
+	
+	public void setIngredient(String ingre, int quantity, String unit) {
+		this.ingre = ingre;
+		this.quantity = quantity;
+		this.unit = unit;
+	}
+	public String getIngre() {
+		return this.ingre;
+	}
+	public int getQuantity() {
+		return this.quantity;
+	}
+	public String getUnit() {
+		return this.unit;
+	}
+}

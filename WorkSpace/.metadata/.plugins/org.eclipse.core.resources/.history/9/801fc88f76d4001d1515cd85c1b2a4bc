@@ -1,0 +1,54 @@
+package Recipe_Management;
+
+public class Tool{
+	private boolean Oven;
+	private boolean Stove;
+	private boolean Pan;
+	private boolean Pot;
+	
+	public Tool() {
+		this(false, false, false, false);
+	}
+	public Tool(boolean oven, boolean stove, boolean pot, boolean pan) {
+		this.Oven=oven;
+		this.Stove=stove;
+		this.Pot=pot;
+		this.Pan=pan;
+	}
+	
+	
+	public void setOven(boolean b) {
+		this.Oven = b;
+	}
+	public void setStove(boolean b) {
+		this.Stove = b;
+	}
+	public void setPan(boolean b) {
+		this.Pan = b;
+	}
+	public void setPot(boolean b) {
+		this.Pot = b;
+	}
+	public boolean getOven() {
+		return this.Oven;
+	}
+	public boolean getStove() {
+		return this.Stove;
+	}
+	public boolean getPan() {
+		return this.Pan;
+	}
+	public boolean getPot() {
+		return this.Pot;
+	}
+	
+	public String getTrues() {
+		String str = "";
+		if(Oven) str+="<오븐> ";
+		if(Stove) str+="<가스레인지/인덕션> ";
+		if(Pan) str+="<프라이팬> ";
+		if(Pot) str+="<냄비> ";
+		
+		return str;
+	}
+}

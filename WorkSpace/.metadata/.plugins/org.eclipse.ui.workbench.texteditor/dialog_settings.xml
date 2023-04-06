@@ -6,8 +6,11 @@
 		<item key="wholeword" value="true"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="setTestCase"/>
+		<item key="selection" value="sc"/>
 		<list key="findhistory">
+			<item value="sc"/>
+			<item value="exce"/>
+			<item value="Ingredient"/>
 			<item value="addComplete"/>
 			<item value="println"/>
 			<item value="setTestCase"/>
@@ -20,8 +23,6 @@
 			<item value="tfReset"/>
 			<item value="Result"/>
 			<item value="MyDemo"/>
-			<item value="valueOf"/>
-			<item value="//&#x09;&#x09;계산한 수식과 결과값을 출력하세요"/>
 		</list>
 		<list key="replacehistory">
 			<item value="HomeGUI"/>

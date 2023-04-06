@@ -1,18 +1,26 @@
 package Recipe_Management;
 
 import java.util.*;
-
+/**
+ * @author Jaewon You
+ * <br>
+ * 레시피를 등록, 조회하는 프로그램<br>
+ * 기능 : 등록, 전체목록보기, 검색, 삭제<br>
+ * 필요한 입력값 : 음식이름, 도구, 재료, 조리단계<br>
+ * 등록 후 ArrayList에 저장<br>
+ *  */
 public class RecipeApp {
 	Scanner sc = new Scanner(System.in);
 	ArrayList<Recipe> myRecipes = new ArrayList<>();
+	Recipe rcp;
 	
+	/** 메인 메뉴를 출력하는 메소드 */
 	public void menu() {
 		System.out.println("------RecipeApp v1.0------");
 		System.out.println(" 1. 레시피 등록");
 		System.out.println(" 2. 레시피 출력");
 		System.out.println(" 3. 레시피 검색");
 		System.out.println(" 4. 레시피 삭제");
-//		System.out.println(" 5. 레시피 편집");
 		System.out.println(" 9. 종  료");
 		System.out.println("----------------------------");
 		System.out.println(" 메뉴 번호를 선택하세요 =>");
@@ -20,26 +28,83 @@ public class RecipeApp {
 		
 	}
 	
-	////// 레시피 등록
-	public void registerRecipe() {
-		Recipe rcp = new Recipe();
+	/** 레시피 등록시 각 항목별 입력을 위해 항목을 선택하는 메소드*/
+	public void input_menu() {
+		System.out.println("----------------------------");
+		System.out.println(" 1. 도구 추가");
+		System.out.println(" 2. 재료 추가");
+		System.out.println(" 3. 조리단계 추가");
+		System.out.println(" 9. 종  료");
+		System.out.println("----------------------------");
+		System.out.println(" 메뉴 번호를 선택하세요 =>");
+		System.out.println("----------------------------");
+	}
+	
+	/** 레시피를 항목별로 입력받는 메소드 */
+	public void inputRecipe() {
+		sc.skip("\n");
+		System.out.print("음식이름 : ");
+		String name = sc.nextLine();
+		rcp.setFName(name);
 		
-		rcp.input();
+		rcp.OSP.getOSP();
+		while(true) {
+			this.input_menu();
+			int num = sc.nextInt();
+			sc.skip("\n");
+			if(num==9) {
+				System.out.println("~~레시피 입력 종료~~");
+				break;
+			}
+			if(num<1||num>4) {
+				System.out.println("메뉴에 없는 번호에요. 다시 입력하세요.");
+				continue;
+			}
+			switch (num) {
+			case 1: //도구 추가
+				System.out.print("도구 추가 : ");
+				rcp.addTool(sc.nextLine());
+				break;
+			case 2: //재료 추가
+				System.out.print("재료 추가 : ");
+				String iName = sc.nextLine();
+				System.out.print("재료양(정수) : ");
+				int iQuantity = sc.nextInt();
+				sc.skip("\n");
+				System.out.print("재료 단위 : ");
+				String iUnit = sc.nextLine();
+				rcp.addIngredients(new Ingredient(iName, iQuantity, iUnit));
+				break;
+			case 3: //조리 단계 추가
+				System.out.print("조리단계 추가 : ");
+				rcp.addSteps(sc.nextLine());
+				break;
+			}
+		}
+	}
+	
+	
+	/** 레시피 등록하는 메소드 */
+	public void registerRecipe() {
+		rcp = new Recipe();
+		
+		inputRecipe();
+		
 		String info = rcp.RecipeToString();
 		System.out.println(info);
 		System.out.println(">>위 정보를 등록할까요? [1.yes 2.no]");
 		//arr에 저장하기
-		int no = sc.nextInt();
+		int no = Integer.parseInt(sc.nextLine());
 		if(no==1) {
 			myRecipes.add(rcp);
-			System.out.println("등록 완료!! 현재 등록 인원: "
-							+myRecipes.size()+"명");
+			System.out.println("등록 완료!! 현재 등록 레시피 개수: "
+							+myRecipes.size()+"개");
 		}else {
 			System.out.println("등록을 취소하였습니다!!");
 		}
 	}
-	
-	////// 레시피 출력 
+
+	/** 레시피 출력하는 메소드 */
 	public void printRecipe() {
 		System.out.println("***총 "+myRecipes.size()+"개의 레시피***");
 		for(Recipe rcp:myRecipes) {
@@ -48,8 +113,8 @@ public class RecipeApp {
 			}
 		}
 	}
-	
-	////// 레시피 검색
+
+	/** 레시피 검색하는 메소드 */
 	public Recipe searchRecipe(String search_str) {
 		System.out.print("검색할 제목 : ");
 		sc.skip("\n");
@@ -88,14 +153,15 @@ public class RecipeApp {
 		}
 		return srcp;
 	}
-	
-	////// 레시피 삭제
+
+	/** 레시피 삭제하는 메소드 */
 	public void removeRecipe() {
 		Recipe Srcp = this.searchRecipe("삭제");
 		myRecipes.remove(Srcp);
+		System.out.println("레시피를 삭제하였습니다!!");
 	}
-	
-	////// 테스트용 더미 항목 자동입력
+
+	/** 테스트용 더미 항목 자동입력 */
 	public void setTestCase() {
 		Recipe testRCP = new Recipe();
 		testRCP.setFName("마카롱");
@@ -132,11 +198,13 @@ public class RecipeApp {
 		myRecipes.add(testRCP);
 	}
 	
+	/** 프로그램 전체를 실행하는 메인 메소드 */
 	public static void main(String[] args) {
 		RecipeApp app = new RecipeApp();
+		int num;
 		while(true) {
 			app.menu();
-			int num= app.sc.nextInt();
+			num= app.sc.nextInt();
 			if(num==9) {
 				System.out.println("Bye Bye~~");
 				break;

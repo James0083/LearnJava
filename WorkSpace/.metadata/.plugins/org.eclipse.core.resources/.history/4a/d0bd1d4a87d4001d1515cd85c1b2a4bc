@@ -1,0 +1,31 @@
+package Recipe_Management;
+
+public class Ingredient {
+	private String ingre;
+	private int quantity;
+	private String unit;
+	
+	public Ingredient() {
+		// TODO Auto-generated constructor stub
+	}
+	public Ingredient(String ingre, int quantity, String unit) {
+		this.ingre = ingre;
+		this.quantity = quantity;
+		this.unit = unit;
+	}
+	
+	public void setIngredient(String ingre, int quantity, String unit) {
+		this.ingre = ingre;
+		this.quantity = quantity;
+		this.unit = unit;
+	}
+	public String getIngre() {
+		return this.ingre;
+	}
+	public int getQuantity() {
+		return this.quantity;
+	}
+	public String getUnit() {
+		return this.unit;
+	}
+}
