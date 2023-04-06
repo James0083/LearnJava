@@ -57,7 +57,7 @@ public class MemoAppView extends JFrame {
 		super("::MemoAppView::");
 		cp = this.getContentPane();
 		
-		ta=new JTextArea("::한줄 메모장::\n");
+		ta=new JTextArea("::한줄 메모장::");
 		JScrollPane sp=new JScrollPane(ta);
 		
 		cp.add(sp, "Center");
@@ -147,7 +147,7 @@ public class MemoAppView extends JFrame {
 			ta.setText("데이터가 없습니다");
 		}else {
 			for(MemoVO vo:arr) {
-				ta.append("\t"+vo.getNo()+"\t"+vo.getName()+"\t"+vo.getMsg()+"\t"+vo.getWdate()+"\n");
+				ta.append(vo.getNo()+"\t"+vo.getName()+"\t"+vo.getMsg()+"\t"+vo.getWdate()+"\n");
 			}
 		}
 		
@@ -155,8 +155,7 @@ public class MemoAppView extends JFrame {
 
 	public static void main(String[] args) {
 		MemoAppView my = new MemoAppView();
-		my.setSize(900, 600);
-		my.setResizable(false); //프레임 사이즈 조절 불가
+		my.setSize(750, 500);
 		my.setLocation(500,300);
 		my.setVisible(true);
 

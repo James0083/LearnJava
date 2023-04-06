@@ -49,7 +49,7 @@ public class MemoDAO {
 		try {
 			con=DBUtil.getCon();
 			StringBuilder buf=new StringBuilder("SELECT rpad(no,10,' ') no, rpad(name,16,' ') name,")
-							.append("rpad(msg,100,' ') msg, wdate FROM memo ORDER BY no DESC");
+							.append("rpad(msg,100,' ') msg, rpad(wdate,16,' ') wdate FROM memo ORDER BY no DESC");
 			String sql=buf.toString();
 			
 			ps=con.prepareStatement(sql);
@@ -59,7 +59,7 @@ public class MemoDAO {
 				int no=rs.getInt("no"); //별칭으로 꺼내옴
 				String name=rs.getString("name");
 				String msg=rs.getString("msg");
-				java.sql.Date wdate=rs.getDate("wdate");
+				java.sql.Date wdate=rs.getString("wdate");
 				
 				MemoVO memo=new MemoVO(no,name,msg,wdate);//record
 				arr.add(memo);//table

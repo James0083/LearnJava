@@ -3,7 +3,6 @@ package memo.app;
 import java.sql.*;
 import common.util.*;
 import java.util.*;
-import java.util.Date;
 /**
  * @author a
  * 영속성 계층(Persistence Layer)에 속함
@@ -42,34 +41,6 @@ public class MemoDAO {
 			close();
 		}
 	}//-------------------------
-	
-	/**전체 메모글을 가져오는 메서드
-	 * 	 */
-	public List<MemoVO> listMeno() throws SQLException{
-		try {
-			con=DBUtil.getCon();
-			StringBuilder buf=new StringBuilder("SELECT rpad(no,10,' ') no, rpad(name,16,' ') name,")
-							.append("rpad(msg,100,' ') msg, wdate FROM memo ORDER BY no DESC");
-			String sql=buf.toString();
-			
-			ps=con.prepareStatement(sql);
-			rs=ps.executeQuery();
-			List<MemoVO> arr=new ArrayList<>();
-			while(rs.next()) {
-				int no=rs.getInt("no"); //별칭으로 꺼내옴
-				String name=rs.getString("name");
-				String msg=rs.getString("msg");
-				java.sql.Date wdate=rs.getDate("wdate");
-				
-				MemoVO memo=new MemoVO(no,name,msg,wdate);//record
-				arr.add(memo);//table
-			}//while---------------
-			return arr;
-			
-		}finally {
-			close(); //DB관련한 자원들을 반납
-		}
-	}
 	
 	/**
 	 * DB관련한 자원들을 반납하는 메서드

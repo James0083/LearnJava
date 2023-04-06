@@ -37,7 +37,7 @@ public class MemoHandler implements ActionListener{
 		try {
 			List<MemoVO> arr=dao.listMeno();
 			app.setTitle("전체 글 개수 : "+arr.size());
-			app.showTextArea(arr);
+			
 			
 		}catch (SQLException e) {
 			app.showMessage(e.getMessage());

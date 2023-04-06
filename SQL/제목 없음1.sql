@@ -35,6 +35,9 @@ commit;
 --2023-04-05
 select * from memo order by 1 desc;
 
+--2023-04-06
+SELECT * FROM MEMO ORDER BY 1 DESC;
+SELECT COUNT(*) FROM MEMO;
 
 
 

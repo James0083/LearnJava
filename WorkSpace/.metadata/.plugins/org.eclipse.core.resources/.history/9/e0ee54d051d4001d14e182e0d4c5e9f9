@@ -5,7 +5,6 @@ import java.awt.*;
 import java.awt.event.*;
 import java.text.*;
 import java.util.*;
-import java.util.List;
 /**
  * --------------------------------------
  * @author 유재원
@@ -57,7 +56,7 @@ public class MemoAppView extends JFrame {
 		super("::MemoAppView::");
 		cp = this.getContentPane();
 		
-		ta=new JTextArea("::한줄 메모장::\n");
+		ta=new JTextArea("::한줄 메모장::");
 		JScrollPane sp=new JScrollPane(ta);
 		
 		cp.add(sp, "Center");
@@ -141,22 +140,10 @@ public class MemoAppView extends JFrame {
 		 * Oracle	: yy:년도		mm: 월	dd: 일	hh: 시간		mi: 분	ss: 초
 		 */
 	}//---------------------------
-	/** 전체 메모 글을 텍스트 에리어에 출력해주는 메서드*/
-	public void showTextArea(List<MemoVO> arr) {
-		if(arr==null||arr.size()==0) {
-			ta.setText("데이터가 없습니다");
-		}else {
-			for(MemoVO vo:arr) {
-				ta.append("\t"+vo.getNo()+"\t"+vo.getName()+"\t"+vo.getMsg()+"\t"+vo.getWdate()+"\n");
-			}
-		}
-		
-	}//-----------------------------
 
 	public static void main(String[] args) {
 		MemoAppView my = new MemoAppView();
-		my.setSize(900, 600);
-		my.setResizable(false); //프레임 사이즈 조절 불가
+		my.setSize(750, 500);
 		my.setLocation(500,300);
 		my.setVisible(true);
 

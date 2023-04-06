@@ -48,8 +48,8 @@ public class MemoDAO {
 	public List<MemoVO> listMeno() throws SQLException{
 		try {
 			con=DBUtil.getCon();
-			StringBuilder buf=new StringBuilder("SELECT rpad(no,10,' ') no, rpad(name,16,' ') name,")
-							.append("rpad(msg,100,' ') msg, wdate FROM memo ORDER BY no DESC");
+			StringBuilder buf=new StringBuilder("SELECT lpad(no,10,' ') no, lpad(name,16,' ') name,")
+							.append("lpad(msg,100,' ') msg, wdate FROM memo ORDER BY no DESC");
 			String sql=buf.toString();
 			
 			ps=con.prepareStatement(sql);
