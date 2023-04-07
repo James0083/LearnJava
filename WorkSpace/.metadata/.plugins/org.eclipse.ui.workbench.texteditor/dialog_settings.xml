@@ -6,8 +6,11 @@
 		<item key="wholeword" value="true"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="sc"/>
+		<item key="selection" value="executeQuery"/>
 		<list key="findhistory">
+			<item value="executeQuery"/>
+			<item value="executeQ"/>
+			<item value="executeUpdate"/>
 			<item value="sc"/>
 			<item value="exce"/>
 			<item value="Ingredient"/>
@@ -20,9 +23,6 @@
 			<item value="ta"/>
 			<item value="MyGui"/>
 			<item value="NotSuppertedNameException"/>
-			<item value="tfReset"/>
-			<item value="Result"/>
-			<item value="MyDemo"/>
 		</list>
 		<list key="replacehistory">
 			<item value="HomeGUI"/>
