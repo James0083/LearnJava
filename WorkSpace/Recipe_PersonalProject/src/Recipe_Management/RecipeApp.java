@@ -122,6 +122,7 @@ public class RecipeApp {
 		Recipe srcp = new Recipe();
 		int i = 1;
 		ArrayList<String> Searched = new ArrayList<>();
+		boolean searched = true;
 
 		//검색어를 포함하는 요리명 검색
 		for(Recipe rcp:myRecipes) {
@@ -130,13 +131,13 @@ public class RecipeApp {
 				System.out.println((i++)+rcp.getFName());
 			}
 		}
-		
+		if(myRecipes.size()==0) searched=false;
 		//보여지는 목록에서 선택
 		int n = 0;
-		while(true) {
+		while(searched) {
 			System.out.println(search_str+ "할 레시피 선택(정수) : ");
-	//		sc.skip("\n");
 			n = sc.nextInt();
+			
 			if(n<1||n>=i) {
 				System.out.println("잘못된 입력입니다. 다시 선택하세요.");
 			}else {
@@ -157,6 +158,10 @@ public class RecipeApp {
 	/** 레시피 삭제하는 메소드 */
 	public void removeRecipe() {
 		Recipe Srcp = this.searchRecipe("삭제");
+		if(Srcp==null) {
+			System.out.println("검색결과가 없습니다.");
+			return;
+		}
 		myRecipes.remove(Srcp);
 		System.out.println("레시피를 삭제하였습니다!!");
 	}
@@ -198,13 +203,27 @@ public class RecipeApp {
 		myRecipes.add(testRCP);
 	}
 	
+	/** 정수값을 받는 메소드*/
+	public int getInt() throws NotIntegerException{
+		String s;
+		sc.skip("\n");
+		s= sc.nextLine();
+		for(int i=0;i<s.length();i++) {
+			if(!Character.isDigit(s.charAt(i))) {
+				throw new NotIntegerException("잘못된 입력입니다. 정수가 아닙니다.");
+			}
+		}
+		int num = Integer.parseInt(s);
+		return num;
+	}
+	
 	/** 프로그램 전체를 실행하는 메인 메소드 */
 	public static void main(String[] args) {
 		RecipeApp app = new RecipeApp();
-		int num;
+		int num=0;
 		while(true) {
 			app.menu();
-			num= app.sc.nextInt();
+			num=app.sc.nextInt();
 			if(num==9) {
 				System.out.println("Bye Bye~~");
 				break;
@@ -213,7 +232,7 @@ public class RecipeApp {
 				app.setTestCase();
 			}
 			else if(num<1||num>4) {
-				System.out.println("메뉴에 없는 번호에요. 다시 입력하세요.");
+				System.out.println("메뉴에 없는 번호입니다. 다시 입력하세요.");
 				continue;
 			}
 			
@@ -226,6 +245,10 @@ public class RecipeApp {
 				break;
 			case 3: //검색
 				Recipe Srcp = app.searchRecipe("검색");
+				if(Srcp==null) {
+					System.out.println("검색결과가 없습니다.");
+					break;
+				}
 				System.out.println(Srcp.RecipeToString());
 				break;
 			case 4: //삭제
