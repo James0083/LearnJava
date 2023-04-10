@@ -6,8 +6,11 @@
 		<item key="wholeword" value="true"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="executeQuery"/>
+		<item key="selection" value="Int()"/>
 		<list key="findhistory">
+			<item value="Int()"/>
+			<item value="getInt"/>
+			<item value="skip"/>
 			<item value="executeQuery"/>
 			<item value="executeQ"/>
 			<item value="executeUpdate"/>
@@ -20,9 +23,6 @@
 			<item value="ToolsStr"/>
 			<item value="count"/>
 			<item value="contains"/>
-			<item value="ta"/>
-			<item value="MyGui"/>
-			<item value="NotSuppertedNameException"/>
 		</list>
 		<list key="replacehistory">
 			<item value="HomeGUI"/>

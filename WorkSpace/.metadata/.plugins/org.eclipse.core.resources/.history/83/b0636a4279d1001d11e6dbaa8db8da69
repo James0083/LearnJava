@@ -1,9 +1,0 @@
-package Recipe_Management;
-
-public class ListPage {
-
-	public ListPage() {
-		// TODO Auto-generated constructor stub
-	}
-
-}

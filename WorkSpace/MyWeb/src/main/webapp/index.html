@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>index.html</title>
+</head>
+<body>
+<h1>Welcome to MyWeb</h1>
+<h2>안녕 MyWeb</h2>
+<hr color="red">
+<h3>GET방식 요청을 보내보자</h3>
+<!-- [1] 링크 걸 때 query string으로 보내는 방식 "?name=Tom&userid=Tommy" => query string
+	 [2] form태그에서 method를 get으로 지정하여 전송하는 방식
+	 [3] url을 직접 입력하여 요청을 보내는 방식
+-->
+<a href="GetTest?name=Tom&userid=Tommy">GetServlet으로 요청 보내기</a>
+<hr>
+<form name="frm" action="GetTest" method="GET">
+	이름: <input type="text" name="name"><br><br>
+	아이디: <input type="text" name="userid"><br><br>
+	<button>Send</button>
+</form>
+<hr color="green">
+<h3>POST 방식 요청을 보내보자</h3>
+<!-- form태그에서 method를 post로 지정하여 전송한다 -->
+
+<form name="frm2" action="PostTest" method="POST">
+	이름: <input type="text" name="name"><br><br>
+	아이디: <input type="text" name="userid"><br><br>
+	<button>Send</button>
+</form>
+</body>
+</html>

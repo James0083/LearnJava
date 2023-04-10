@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>input.html</title>
+
+<style type="text/css">
+	*{
+		position:relative;
+		margin:auto;
+		font-family :Verdana, Geneva, Tahoma, sans-serif;
+	}
+	table{
+		border: 1px solid;
+		width:80%;
+		padding:0;
+	}
+	td{
+		border: 1px solid;
+		height: 40px;
+		padding:0;
+	}
+	#Title{
+		background:rgb(160,190,250);
+		height:80px;
+		font:30px;
+    	text-align:center;
+		color:navy;
+	}
+	.data_name{
+    	text-align: center;
+		color:navy;
+		width:20%;
+	}
+	.inputText{
+		width:80%;
+		height:80%;
+	}
+	#buttons{
+    	text-align: center;
+	}
+	button{
+		background: rgb(243,243,212);
+		width:20%;
+	}
+</style>
+<script type="text/javascript">
+	function check(){
+		if(mf.name.value==""){
+			alert('작성자를 입력하세요');
+			mf.name.focus();
+			return;
+		}
+		if(mf.msg.value==""){
+			alert('메모내용을 입력하세요');
+			mf.msg.focus();
+			return;
+		}
+		//window.document.mf.submit();
+		mf.submit();
+	}
+</script>
+</head>
+<body>
+	<div>
+		<form name="mf" action="MemoAdd" method="get">
+		<!-- table로 화면과 같이 구성하세요 -->
+			<table>
+				<tr><th colspan="2" id="Title"><h1>::한줄 메모장::</h1></th></tr>
+				<tr>
+					<td class="data_name"><b>작성자</b></td>
+					<td><input type="text" name="name" class="inputText" placeholder="Name"></td>
+				</tr>
+				<tr>
+					<td class="data_name"><b>메모 내용</b></td>
+					<td><input type="text" name="msg" class="inputText" placeholder="Message"></td>
+				</tr>
+				<tr id="buttons">
+					<td colspan="2">
+						<button type="button" onclick="check()">글 남기기</button>
+						<button type="reset">다시 쓰기</button>
+					</td>
+				</tr>
+			</table>
+		</form>
+	</div>
+</body>
+</html>

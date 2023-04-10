@@ -1,9 +1,0 @@
-package Recipe_Management;
-
-public class DeletePage {
-
-	public DeletePage() {
-		// TODO Auto-generated constructor stub
-	}
-
-}
