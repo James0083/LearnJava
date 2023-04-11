@@ -6,8 +6,9 @@
 		<item key="wholeword" value="true"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="Int()"/>
+		<item key="selection" value="center"/>
 		<list key="findhistory">
+			<item value="center"/>
 			<item value="Int()"/>
 			<item value="getInt"/>
 			<item value="skip"/>
@@ -22,7 +23,6 @@
 			<item value="setTestCase"/>
 			<item value="ToolsStr"/>
 			<item value="count"/>
-			<item value="contains"/>
 		</list>
 		<list key="replacehistory">
 			<item value="HomeGUI"/>

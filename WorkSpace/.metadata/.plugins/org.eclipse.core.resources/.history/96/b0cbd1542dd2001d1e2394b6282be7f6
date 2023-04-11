@@ -1,9 +1,0 @@
-package Recipe_Management;
-
-public class ViewRecipePage {
-
-	public ViewRecipePage() {
-		// TODO Auto-generated constructor stub
-	}
-
-}
