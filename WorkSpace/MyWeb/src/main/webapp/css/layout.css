@@ -1,0 +1,138 @@
+@charset "UTF-8";
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+/* . box-sizing:
+    default: content-box (콘텐츠영역에 폭과높이를 적용)
+    프로퍼티에 border-box를 적용하면 콘텐츠 영역, padding, border가 포함된 영역을 
+    width / height 프로퍼티의 대상으로 지정할 수 있다 */
+}
+
+body{
+    font-family :Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 16px;
+    color: navy;
+}
+div#wrap{
+    width:90%;
+    max-width: 1024px;
+    margin:auto;
+    height:100vh;
+    /* viewport height  1vh == > viewport 높이의 1%, vw(viewport width) */
+    
+    /* border:1px solid lightgray; */
+    /* background-color:beige; */
+}
+div.cls{
+    clear: both;    /* float설정 해제 */
+
+}
+/* header ------------------------ */
+header{
+    padding: 10px;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    margin-top: 10px;
+
+}
+header img{
+    width: 90%;
+    height: 100%;
+    margin: auto;
+}
+/* nav----------------------------------- */
+nav{
+    background-color: rgba(225, 232, 240, 1);
+    border-radius: 5px;
+    height: 33px;
+    padding: 5px;
+}
+nav>ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+nav>ul>li{
+    float: left;
+    padding: 0 5px 0 0;   /* top -> right -> bottom -> left */
+}
+nav>ul>li>a{
+    display: block;
+    text-decoration: none;
+    padding: 2px 20px 3px 20px;
+    color: rgb(50, 50, 50);
+}
+nav ul li a:hover{
+    background-color: skyblue;
+    color: rgb(255, 255, 255);
+    border-radius: 5px;
+}
+/* article ----------------------------------- */
+article{
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    width: 75%;
+    float: left;
+    height: 70vh;
+}
+article section{
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 7px 5px;
+    width: 48%;
+    float: left;
+}
+article section:nth-child(2n+1){
+    float: left;
+}
+article section:nth-child(2n){
+    float: right;
+}
+/* aside ------------------------------------ */
+aside{
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    width: 24.8%;
+    float: right;
+    height: 70vh;
+}
+aside nav{
+    border: none;
+    background: none;
+}
+aside nav ul{
+    list-style-type: none;
+}
+aside nav ul li{
+    display: block;
+    width: 90%;
+    margin: auto;
+    padding: 0 5px;
+}
+aside nav ul li a{
+    padding: 5px 0;
+}
+aside nav ul li a:hover{
+    background-color: transparent;  /* 반전 */
+    color: navy;
+    font-weight: bold;
+}
+/* footer ----------------------- */
+footer{
+    background-color: #efefef;
+    height: 50px;
+    line-height: 30px;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size:0.8em;
+    text-align: center;
+}
+
+div.container{
+	padding:1em;
+	text-align:center;
+	width:100%;
+}
