@@ -1,9 +1,0 @@
-package Recipe_Management;
-
-public class RecipeHandler {
-
-	public RecipeHandler() {
-		// TODO Auto-generated constructor stub
-	}
-
-}

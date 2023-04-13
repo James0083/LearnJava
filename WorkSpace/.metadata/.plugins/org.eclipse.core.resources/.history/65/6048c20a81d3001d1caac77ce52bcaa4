@@ -1,9 +1,0 @@
-package memo.app;
-
-public class MemoHandler {
-
-	public MemoHandler() {
-		// TODO Auto-generated constructor stub
-	}
-
-}

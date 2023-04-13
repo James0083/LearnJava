@@ -75,6 +75,12 @@ article{
     width: 75%;
     float: left;
     height: 70vh;
+    overflow: scroll;
+    -ms-overflow-style: none; /* 인터넷 익스플로러 */
+    scrollbar-width: none; /* 파이어폭스 */
+}
+article::-webkit-scrollbar {
+    display: none; /* 크롬, 사파리, 오페라, 엣지 */
 }
 article section{
     border: 1px solid lightgray;
@@ -130,9 +136,73 @@ footer{
     font-size:0.8em;
     text-align: center;
 }
-
 div.container{
 	padding:1em;
 	text-align:center;
 	width:100%;
 }
+div.error{
+	width:60%;
+	margin:auto;
+	height:20vh;
+	background-color:#efefef;
+	color:red;
+}
+table{
+	border-collapse:collapse;
+}
+#userTable{
+	width:90%;
+	margin: 2em auto;
+}
+.m1{
+	background-color:#f0f0f0;
+	padding:5px;
+}
+.m2{
+	text-align: left;
+	padding: 5px;
+}
+.m2 input{
+	width:50%;
+	padding:5px;
+}
+.m2 button{
+	padding: 5px;
+	width:25%;
+	background-color:#3c486b;
+	border:1px solid silver;
+	color:white;
+	border-radius:5px;
+}
+.m3, .m4{
+	text-align:center;
+}
+.m3 button{
+	padding: 5px;
+	background-color:#f45050;
+	width:25%;
+	border:1px solid silver;
+	color:white;
+	border-radius:5px;
+}
+.m4 button{
+	padding: 5px;
+	background-color:#f9d949;
+	width:25%;
+	border:1px solid silver;
+	color:white;
+	border-radius:5px;
+}
+#hp1, #hp2, #hp3{
+	width: 20%;
+}
+#addr1, #addr2{
+	width:80%;
+}
+
+
+
+
+
+

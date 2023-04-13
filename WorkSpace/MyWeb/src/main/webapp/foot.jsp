@@ -1,15 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	String myctx=request.getContextPath();
+%>
 </article>
         <!-- aside : 사이드 영역, 사이드 메뉴가 들어감 -->
         <aside>
             <!-- aside -->
             <nav>
                 <ul>
-                    <li><a href="#">Menu1</a></li>
-                    <li><a href="#">Menu2</a></li>
-                    <li><a href="#">Menu3</a></li>
-                    <li><a href="#">Menu4</a></li>
+                    <li><a href="<%=myctx%>/example/ex07_error.jsp">에러처리</a></li>
+                    <li><a href="<%=myctx%>/example/ex08_request.jsp">request1</a></li>
+                    <li><a href="<%=myctx%>/example/ex09_request.jsp?keyword=Java&pageNum=1">request2</a></li>
+                    <li><a href="<%=myctx%>/example/ex10_response.jsp">response</a></li>
+                    <li><a href="<%=myctx%>/">Menu3</a></li>
+                    <li><a href="<%=myctx%>/">Menu4</a></li>
                 </ul>
             </nav>
         </aside>

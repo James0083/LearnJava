@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!-- ex31homepage.html 과제 - table이 아닌 div 시맨틱 태그를 이용한 풀이 -->
+<%
+	//컨텍스트명 알아내기
+	String myctx=request.getContextPath();
+	//System.out.println("myctx= "+myctx);	//==> "MyWeb"
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +13,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ex43layout.html</title>
     <!-- layout.css 파일을 참조 -->
-    <link rel="stylesheet" type="text/css" href="css/layout.css">
+    <link rel="stylesheet" type="text/css" href="<%=myctx %>/css/layout.css">
+    <!-- http://localhost:7070/css/layout.css -->
+    <!-- "webapps/ROOT" ===>"/" -->
+    
 </head>
 <body>
     <div id="wrap">
@@ -17,7 +24,7 @@
         <header>
             <!-- header -->
             <a href="#">
-                <img src="images/logo.png" alt="네이버 검색창">
+                <img src="<%=myctx %>/images/logo.png" alt="네이버 검색창">
             </a>
         </header>
         <div class="cls"></div>
@@ -25,10 +32,10 @@
         <nav>
             <!-- nav -->
             <ul>
-                <li><a href="main.jsp">Home</a></li>
-                <li><a href="#">Signup</a></li>
-                <li><a href="#">Signin</a></li>
-                <li><a href="#">Board</a></li>
+                <li><a href="<%=myctx %>/main.jsp">Home</a></li>
+                <li><a href="<%=myctx %>/member/join.jsp">Signup</a></li>
+                <li><a href="<%=myctx %>/login/login.jsp">Signin</a></li>
+                <li><a href="<%=myctx %>/board/list.jsp">Board</a></li>
             </ul>
         </nav>
         <div class="cls"></div>
