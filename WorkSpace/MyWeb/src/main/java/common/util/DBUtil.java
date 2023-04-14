@@ -4,7 +4,7 @@ import java.sql.*;
 
 public class DBUtil {
 	static String url = "jdbc:oracle:thin:@localhost:1521:XE";
-	static String user="scott", pwd="tiger";
+	static String user="multishop", pwd="tiger";
 	
 	static {
 		//드라이버 로딩

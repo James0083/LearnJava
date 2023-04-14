@@ -178,6 +178,9 @@ table{
 .m3, .m4{
 	text-align:center;
 }
+.m3{
+	background-color:#f9d949;
+	}
 .m3 button{
 	padding: 5px;
 	background-color:#f45050;
@@ -200,6 +203,15 @@ table{
 #addr1, #addr2{
 	width:80%;
 }
+span.ck{
+	font-size:0.8em;
+	color:#f45050;
+}
+
+
+
+
+
 
 
 
