@@ -4,10 +4,37 @@
 <!-- ----------------------------------------- -->
 <script type="text/javascript" src="../js/userCheck.js"></script>
 <!-- ----------------------------------------- -->
+<!-- 
+[1] 회원번호 파라미터값 받기
+[2] 유효성 체크 - list.jsp로 redirect이동
+[3] userDao id로 UserDAO빈 생성
+   	=> useBean액션 사용하기
+[4] userDao 의 selectUserByIdx()메서드 호출하기
+[5] 그 결과 값을 html input의 value값으로 출력해주자
+ -->
+<jsp:useBean id="userDao" class="user.model.UserDAO" scope="session"/>
+<jsp:useBean id="user" class="user.model.UserVO" scope="page"/>
+<%
+	String idxStr = request.getParameter("idx");
+	if(idxStr==null||idxStr.trim().isEmpty()){
+		response.sendRedirect("list.jsp");
+	}
+	out.println(idxStr);
+	int idx = Integer.parseInt(idxStr);
+	user = userDao.selectUserByIdx(idx);
+	
+%>
 <div class="container">
 	<h1>회원 가입</h1>
-	<form name="mf" action="joinEnd.jsp" method="post">
+	<form name="mf" action="modifyEnd.jsp" method="post">
 	<table id="userTable" border="1">
+		<tr>
+			<td width="20%" class="m1"><b>회원번호</b></td>
+			<td width="80%" class="m2">
+			<input type="text" name="idx" id="idx" placeholder="Idx" readonly value="<%=user.getIdx() %>">
+			<br>
+			</td>
+		</tr>
 		<tr>
 			<td width="20%" class="m1"><b>이  름</b></td>
 			<td width="80%" class="m2">
@@ -67,8 +94,26 @@
 			</td>
 		</tr>
 		<tr>
+			<td width="20%" class="m1"><b>마일리지</b></td>
+			<td width="80%" class="m2">
+			<input type="text" name="mileage" id="mileage" placeholder="Mileage">
+			</td>
+		</tr>
+		<tr>
+			<td width="20%" class="m1"><b>회원상태</b></td>
+			<td width="80%" class="m2">
+			<span class='mstate'>
+			회원상태정보
+			</span><br>
+			<input type="radio" name="mstate" value="0" class='radio_btn'>활동 회원
+			<input type="radio" name="mstate" value="-1" class='radio_btn'>정지 회원
+			<input type="radio" name="mstate" value="-2" class='radio_btn'>탈퇴 회원
+			<br>
+			</td>
+		</tr>
+		<tr>
 			<td colspan="2" class="m2" style="text-align:center">
-				<button type="button" onclick="member_check()">회원가입</button>
+				<button type="button" onclick="member_check()">수정하기</button>
 				<button type="reset">다시쓰기</button>
 			</td>
 		</tr>

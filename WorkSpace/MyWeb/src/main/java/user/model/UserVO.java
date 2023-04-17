@@ -59,6 +59,7 @@ public class UserVO {
 
 	public void setName(String name) {
 		this.name = name;
+		System.out.println("setName() : "+name);
 	}
 
 	public String getUserid() {
@@ -67,6 +68,7 @@ public class UserVO {
 
 	public void setUserid(String userid) {
 		this.userid = userid;
+		System.out.println("setUserid() : "+userid);
 	}
 
 	public String getPwd() {

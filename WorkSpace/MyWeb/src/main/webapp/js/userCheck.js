@@ -1,6 +1,36 @@
 /**
  * 
  */
+let win=null;
+function open_idcheck(){
+	win=window.open("idCheck.jsp", "idCheck", "width=400, height=400, left=200, top=200");
+}//-----------------------
+
+function set_id(uid){
+	//alert(uid);
+	//uid값을 부모창(window)의 userid의 value값에 전달하자
+	//팝업창에서 부모창을 참조할 때는 : opener(window)
+	//window > document > forms 
+	opener.document.mf.userid.value = uid;
+	
+	//팝업창 닫기
+	self.close();
+}
+
+function id_check(){
+	if(!idf.userid.value){
+		alert('아이디를 입력해야해요');
+		idf.userid.focus();
+		return;
+	}
+	if(!isUserid(idf.userid)){
+		alert('아이디는 영문자, 숫자, _, !로 4~8자까지 가능해요')
+		idf.userid.select();
+		return;
+	}
+	idf.submit();
+}
+
 function member_check(){
 	if(!isKor(mf.name)){
 		alert('이름은 한글로 2자 이만 가능해요');

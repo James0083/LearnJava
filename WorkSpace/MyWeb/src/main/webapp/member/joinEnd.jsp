@@ -4,35 +4,45 @@
 <%
 	//1. post방식일 때 한글처리
 	request.setCharacterEncoding("UTF-8");
-
 	//2. 사용자가 입력한 값 받기
-	String name = request.getParameter("name");
-	String userid = request.getParameter("userid");
-	String pwd = request.getParameter("pwd");
-	String hp1 = request.getParameter("hp1");
-	String hp2 = request.getParameter("hp2");
-	String hp3 = request.getParameter("hp3");
-	String post = request.getParameter("post");
-	String addr1 = request.getParameter("addr1");
-	String addr2 = request.getParameter("addr2");
 	//3. 유효성 체크(name, userid, pwd, hp1, hp2, hp3)==>join.jsp 리다이렉트 이동
-	if(name==null||userid==null||pwd==null||hp1==null||hp2==null||hp3==null){
+	//4. 2번값==>UserVO에 담기
+	//5. UserDAO의 insertUser()호출
+	//6. 그 결과 메시지 처리 및 페이지 이동 (login/login.jsp)
+	
+	//userBean액션을 이요해 객체를 생성하자
+	//scope: page < request < session < application
+	//VO객체 => page, DAO 객체 => session 
+%>
+<jsp:useBean id="user" class="user.model.UserVO" scope="page"/>
+<%--  UserVO user=new UserVO(); 와 동일하다 --%>
+<%-- scope="page" : 페이지 하나당 하나의 객체가 생성됨. --%>
+
+<jsp:setProperty name="user" property="*"/>
+<%--
+	user.setName(request.getParameter("name"));
+	user.setUserid(request.getParameter("userid"));
+	...
+	와 동일하다
+ --%>
+ 
+<jsp:useBean id="userDao" class="user.model.UserDAO" scope="session"/>
+<%-- scope="session" : 브라우저 하나당 하나의 객체가 생성됨. --%>
+<%
+	if(user.getName()==null||user.getUserid()==null||user.getHp1()==null||user.getHp2()==null||user.getHp3()==null){
 		response.sendRedirect("join.jsp");
 		return;
 	}
 	
-	//4. 2번값==>UserVO에 담기
-	UserVO user=new UserVO(0,name,userid,pwd,hp1,hp2,hp3,post,addr1,addr2,null,1000,0,null);
-	
-	//5. UserDAO의 insertUser()호출
-	UserDAO dao=new UserDAO();
-	int n=dao.insertUser(user);
-	
-	//6. 그 결과 메시지 처리 및 페이지 이동 (login/login.jsp)
+	int n=userDao.insertUser(user);
 	String str=(n>0)?"회원가입 처리 완료-로그인 페이지로 이동합니다":"회원가입 실패";
 	String loc=(n>0)?"../login/login.jsp":"javascript:history.back()";
 %>
+<jsp:forward page="list.jsp"/>
+<!--  forward방식으로 이동. 서버 내부에서 패이지 이동이 일어나며 이때 같은 request, response를 사용한다 -->
+<%-- 
 <script>
 	alert('<%=str%>');
 	location.href='<%=loc%>';
 </script>
+ --%>

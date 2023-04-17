@@ -207,7 +207,22 @@ span.ck{
 	font-size:0.8em;
 	color:#f45050;
 }
-
+.mstate0{
+	color:#3c486b;
+}
+.mstate-1{
+	color:green;
+}
+.mstate-2{
+	color:tomato;
+}
+.mstate9{
+	color:#f9d949;
+}
+input.radio_btn{
+	width:10%;
+	text-align:left;
+}
 
 
 
