@@ -1,9 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="user.model.*" %>
 <%
 	//컨텍스트명 알아내기
 	String myctx=request.getContextPath();
 	//System.out.println("myctx= "+myctx);	//==> "MyWeb"
+	UserVO loginUser=(UserVO)session.getAttribute("loginUser");
+	boolean isLogin=(loginUser==null)? false:true;
+	
+	
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -34,9 +38,21 @@
             <ul>
                 <li><a href="<%=myctx %>/main.jsp">Home</a></li>
                 <li><a href="<%=myctx %>/member/join.jsp">Signup</a></li>
+                <%
+                if(!isLogin){//로그인 하지 않았다면
+                %>
                 <li><a href="<%=myctx %>/login/login.jsp">Signin</a></li>
+                <%}else{	//로그인 했다면 %>
+                <li><a href="<%=myctx %>/login/logout.jsp">Logout</a></li>
+                <%} %>
                 <li><a href="<%=myctx %>/board/list.jsp">Board</a></li>
                 <li><a href="<%=myctx %>/member/list.jsp">Users</a></li>
+                
+                <%if(isLogin){ %>
+                <li style="background-color:#19376D; border-radius:5px">
+                <a href="#" style='color:white'><%=loginUser.getUserid() %> 로그인 중...</a>
+                </li>
+                <%} %>
             </ul>
         </nav>
         <div class="cls"></div>

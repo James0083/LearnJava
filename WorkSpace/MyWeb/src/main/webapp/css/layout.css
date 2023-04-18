@@ -220,10 +220,21 @@ span.ck{
 	color:#f9d949;
 }
 input.radio_btn{
-	width:10%;
+	width:5%;
 	text-align:left;
 }
-
+div#loginDiv{
+	width:60%;
+	margin:auto;
+}
+#loginDiv table{
+	width:100%;
+	margin: 1em auto;
+}
+#saveId{
+	width:4%;
+	margin-right:10px;
+}
 
 
 

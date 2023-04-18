@@ -41,7 +41,7 @@
     		<!-- ------------------- -->
     	</table>
     	<!-- 수정 똔느 삭제 처리를 위한 form -->
-		<form name="userF">
+		<form name="userF" method="post">
 			<!--  hidden field ------------------------ -->
 			<input type="hidden" name="idx">
 			<!-- -------------------------------------- -->
@@ -55,9 +55,12 @@
     		userF.submit();
     	}
     	function userDel(num){
-    		userF.idx.value=num;
-    		userF.action='delete.jsp';
-    		userF.submit();
+    		let yn=window.confirm('정말 삭제할까요?');
+    		if(yn){
+	    		userF.idx.value=num;
+	    		userF.action='delete.jsp';
+	    		userF.submit();
+    		}//if-----
     	}
     </script>
     

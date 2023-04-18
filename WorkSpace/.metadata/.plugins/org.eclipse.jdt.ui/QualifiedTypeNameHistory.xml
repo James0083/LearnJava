@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="javax.swing.JCheckBox"/>
     <fullyQualifiedTypeName name="java.awt.event.ItemEvent"/>
     <fullyQualifiedTypeName name="Recipe_Management.AddPage"/>
     <fullyQualifiedTypeName name="Recipe_Management.Recipes"/>
@@ -31,7 +30,6 @@
     <fullyQualifiedTypeName name="java.lang.NumberFormatException"/>
     <fullyQualifiedTypeName name="Recipe_Management.HomeGUI"/>
     <fullyQualifiedTypeName name="java.sql.Date"/>
-    <fullyQualifiedTypeName name="java.lang.Exception"/>
     <fullyQualifiedTypeName name="java.util.Date"/>
     <fullyQualifiedTypeName name="Recipe_Management.NotIntegerException"/>
     <fullyQualifiedTypeName name="javax.servlet.http.HttpServlet"/>
@@ -53,11 +51,13 @@
     <fullyQualifiedTypeName name="java.sql.Connection"/>
     <fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
     <fullyQualifiedTypeName name="user.model.UserDAO"/>
-    <fullyQualifiedTypeName name="common.util.DBUtil"/>
     <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="java.sql.ResultSet"/>
     <fullyQualifiedTypeName name="java.lang.StringBuilder"/>
-    <fullyQualifiedTypeName name="user.model.UserVO"/>
+    <fullyQualifiedTypeName name="java.lang.Exception"/>
     <fullyQualifiedTypeName name="java.sql.SQLException"/>
+    <fullyQualifiedTypeName name="common.util.DBUtil"/>
+    <fullyQualifiedTypeName name="user.model.UserVO"/>
+    <fullyQualifiedTypeName name="user.model.NotUserException"/>
 </qualifiedTypeNameHistroy>
