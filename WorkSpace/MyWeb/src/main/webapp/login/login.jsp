@@ -17,7 +17,23 @@
 			return true;
 		}
 	</script>
-
+<%
+	//쿠키 꺼내기 "uid"에 해당하는 아이디값을 꺼내서 
+	//input userid value에 출력한다
+	Cookie[] cks = request.getCookies();
+	String uid="";
+	boolean flag=false;
+	if(cks!=null){
+		for(Cookie ck: cks){
+			String key=ck.getName();
+			if(key.equals("uid")){
+				uid=ck.getValue();
+				flag=true;
+				break;
+			}
+		}//for---
+	}//if----
+%>
 	<h1 style='color:green'>Login</h1>
 	<div id="loginDiv">
 		<form name="loginF" action="loginEnd.jsp" method="post" onsubmit="return login_check()">
@@ -28,7 +44,9 @@
 				<tr>
 					<td width="20%" class="m1"><b>아이디</b></td>
 					<td width="80%" class="m2">
-						<input type="text" name="userid" id="userid" placeholder="ID">
+						<input type="text" name="userid" 
+							value="<%=uid %>" 
+						id="userid" placeholder="ID">
 					</td>
 				</tr>
 				<tr>
@@ -40,7 +58,9 @@
 				<tr>
 					<td colspan="2">
 						<label for="saveId">
-							<input type="checkbox" name="saveId" id="saveId">아이디 저장
+							<input type="checkbox" name="saveId" 
+								<%=(flag)? "checked":"" %>
+							id="saveId">아이디 저장
 						</label>
 						<button>로그인</button>
 					</td>

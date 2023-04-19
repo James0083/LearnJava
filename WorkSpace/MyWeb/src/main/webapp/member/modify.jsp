@@ -25,11 +25,19 @@
 		return;
 	}
 	String idxStr = request.getParameter("idx");
+	UserVO member=(UserVO)session.getAttribute("loginUser");
+	int mstate=0;
 	if(idxStr==null||idxStr.trim().isEmpty()){
-		response.sendRedirect("list.jsp");
-		return;
+		
+		if(member==null){
+			response.sendRedirect("list.jsp");
+			return;
+		}
+		idxStr=member.getIdx()+"";
+		
 	}
 	int idx = Integer.parseInt(idxStr.trim());
+	mstate=member.getMstate(); //관리자 여부 체크하기 위해(9)
 %>
 <jsp:useBean id="userDao" class="user.model.UserDAO" scope="session"/>
 <%
@@ -47,8 +55,11 @@
 	//out.println(user);
 %>
 <div class="container">
-	<h1>회원 가입</h1>
+	<h1>회원 정보 수정</h1>
 	<form name="mf" action="modifyEnd.jsp" method="post">
+	<!-- 로그인한 사함이 관리자면 9값을 갖고 일반 user면 0을 갖는다 -->
+	<input type="hidden" name="mode" value="<%=mstate %>">
+	<!-- ------------------------------------------------- -->
 	<table id="userTable" border="1">
 		<tr>
 			<td width="20%" class="m1"><b>회원번호</b></td>
@@ -74,6 +85,10 @@
 			<span class="ck">*아이디는 영문자, 숫자, _, !만 사용 가능해요</span>
 			</td>
 		</tr>
+		<%
+		//if(mstate==user.getMstate()){ //일반회원일때만 비밀번호 수정-관리자가 비밀번호 수정 못하게
+		if(mstate!=9){ //일반회원일때만 비밀번호 수정-관리자가 비밀번호 수정 못하게
+		%>
 		<tr>
 			<td width="20%" class="m1"><b>비밀번호</b></td>
 			<td width="80%" class="m2">
@@ -89,6 +104,9 @@
 			<br>
 			</td>
 		</tr>
+		<%
+		} 
+		%>
 		<tr>
 			<td width="20%" class="m1"><b>연락처</b></td>
 			<td width="80%" class="m2">
@@ -118,7 +136,9 @@
 		<tr>
 			<td width="20%" class="m1"><b>마일리지</b></td>
 			<td width="80%" class="m2">
-			<%if(user.getMstate()!=9){ %>
+			<%if(mstate!=9){ //로그인한 사람이 관리자가 아니라면
+					//로그인 후 수정 예정 
+				%>
 				<%=user.getMileage() %>점
 			<%}else{ 
 			//관리자의 경우 마일리지 수정 가능하게
@@ -136,6 +156,13 @@
 			<input type="radio" name="mstate" value="0" class='radio_btn' <%=(user.getMstate()>=0)?"checked":"" %> >활동 회원
 			<input type="radio" name="mstate" value="-1" class='radio_btn' <%=(user.getMstate()==-1)?"checked":"" %> >정지 회원
 			<input type="radio" name="mstate" value="-2" class='radio_btn' <%=(user.getMstate()==-2)?"checked":"" %> >탈퇴 회원
+			<%
+			if(mstate==9){//관리자라면
+			%>
+			<input type="radio" name="mstate" value="9" class='radio_btn' <%=(user.getMstate()==9)?"checked":"" %> >관리자
+			<%
+			}
+			%>
 			<br>
 			</td>
 		</tr>

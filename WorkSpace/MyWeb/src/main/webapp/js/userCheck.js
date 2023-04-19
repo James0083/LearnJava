@@ -43,14 +43,16 @@ function member_check(){
 		mf.userid.select();
 		return;
 	}
+	
+	//로그인한 사람이 관리자일 경우는 비번 변경 불가 ==> mf.mode.value값이 9면 관리
 	//비밀전호는 문자, 숫자, !, .포함해서 4~8자리 이내
-	if(!isPasswd(mf.pwd)){
+	if(mf.mode.value!=9 && !isPasswd(mf.pwd)){
 		alert('비밀전호는 문자, 숫자, !, _, . 포함해서 4~8자리 이내여야 해요')
 		mf.pwd.select();
 		return;
 	}
 	//비번, 비번확인 값 일치 여부 체크
-	if(mf.pwd.value!=mf.pwd2.value){
+	if(mf.mode.value!=9 && (mf.pwd.value!=mf.pwd2.value)){
 		alert('비밀번호와 비밀번호 확인값이 달라요');
 		mf.pwd2.select();
 		return;

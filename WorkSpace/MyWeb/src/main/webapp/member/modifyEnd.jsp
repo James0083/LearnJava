@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="user.model.*"%>
 <%
 //post방식일 때 한글처리
 request.setCharacterEncoding("UTF-8");
@@ -27,6 +27,11 @@ property: VO빈의 property명을 기술 - html의 name과 VO의 이름을 통�
 %>
 <jsp:useBean id="userDao" class="user.model.UserDAO" scope="session" />
 <%
-	int n=userDao.updateUser(user);
+	UserVO member=(UserVO)session.getAttribute("loginUser");
+	int mstate=0;
+	if(member!=null){
+		mstate=member.getMstate();
+	}
+	int n=userDao.updateUser(user, mstate);
 	response.sendRedirect("list.jsp");
 %>

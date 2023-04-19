@@ -27,14 +27,28 @@ public class UserDAO {
 		
 		return user;
 	}//-------------------------------
-	/**아이디로 회원정보 가져오는 메서드*/
+	/**아이디로 회원정보 가져오는 메서드
+	 	-- system으로 접속해서 multishop에게 view생성 권한 부여
+		grant create view, create synonym to multishop;
+		--------------------------------------
+		--multishop으로 접속해서 뷰 생성
+		create or replace view memberView
+		as
+		select member.*, 
+		decode(mstate, 0, '활동회원', -1,'정지회원',-2,'탈퇴회원',9,'관리자') mstateStr
+		from member
+		where mstate > -2;
+		
+		select * from memberView;
+	 * */
 	public UserVO selectUserByUserid(String userid) throws SQLException {
 		try {
 			con=DBUtil.getCon();
-			StringBuilder buf=new StringBuilder("select member.*, ")
-					.append(" decode(mstate, 0,'활동회원',-1,'정지회원',-2,'탈퇴회원',9,'관리자') mstateStr ")
-					.append(" from member where userid=?");
-			String sql=buf.toString();
+//			StringBuilder buf=new StringBuilder("select member.*, ")
+//					.append(" decode(mstate, 0,'활동회원',-1,'정지회원',-2,'탈퇴회원',9,'관리자') mstateStr ")
+//					.append(" from member where userid=?");
+//			String sql=buf.toString();
+			String sql="select * from memberView where userid=?";
 			ps=con.prepareStatement(sql);
 			ps.setString(1, userid);
 			rs=ps.executeQuery();
@@ -157,25 +171,38 @@ public class UserDAO {
 		return arr;
 	}//-----------------------------
 	
-	public int updateUser(UserVO user) throws SQLException {
+	public int updateUser(UserVO user, int mstate) throws SQLException {
 		try {
 			con=DBUtil.getCon();
-			StringBuilder buf=new StringBuilder("update member set name=?, userid=?, pwd=?, hp1=?, hp2=?, hp3=?,")
+			StringBuilder buf=null;
+			if(mstate!=9) {//일반회원일 경우
+			buf=new StringBuilder("update member set name=?, userid=?, hp1=?, hp2=?, hp3=?,")
 					.append(" post=?, addr1=?, addr2=?, mstate=?")
-					.append(" where idx=?");
+					.append(", pwd=? where idx=?");				
+			}else {
+				//관리자라면 마일리지 점수 수정
+				buf=new StringBuilder("update member set name=?, userid=?, hp1=?, hp2=?, hp3=?,")
+						.append(" post=?, addr1=?, addr2=?, mstate=?")
+						.append(", mileage=?")
+						.append(" where idx=?");	
+			}
 			String sql=buf.toString();
 			System.out.println(sql);
 			ps=con.prepareStatement(sql);
 			ps.setString(1, user.getName());
 			ps.setString(2, user.getUserid());
-			ps.setString(3, user.getPwd());
-			ps.setString(4, user.getHp1());
-			ps.setString(5, user.getHp2());
-			ps.setString(6, user.getHp3());
-			ps.setString(7, user.getPost());
-			ps.setString(8, user.getAddr1());
-			ps.setString(9, user.getAddr2());
-			ps.setInt(10, user.getMstate());
+			ps.setString(3, user.getHp1());
+			ps.setString(4, user.getHp2());
+			ps.setString(5, user.getHp3());
+			ps.setString(6, user.getPost());
+			ps.setString(7, user.getAddr1());
+			ps.setString(8, user.getAddr2());
+			ps.setInt(9, user.getMstate());
+			if(mstate!=9) {//일반 회원일 경우
+				ps.setString(10, user.getPwd());
+			}else { //관리자일 경우
+				ps.setInt(10, user.getMileage());
+			}
 			ps.setInt(11, user.getIdx());
 			return ps.executeUpdate();
 		} finally {

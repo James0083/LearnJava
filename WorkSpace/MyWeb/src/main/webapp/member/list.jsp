@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="user.model.*, java.util.*"%>
-
+<!-- 관리자 여부를 체크하는 모듈 include ------------------------------- -->
+<%@ include file="/login/adminCheckModule.jsp" %>
+<!-- ------------------------------------------------------------ -->
 <jsp:include page="/top.jsp"/>
 <%-- <jsp:useBean id="user" class="user.model.UserVO" scope="request"/> --%>
 
