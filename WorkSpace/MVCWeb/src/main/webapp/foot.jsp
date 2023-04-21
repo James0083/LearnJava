@@ -9,12 +9,7 @@
             <!-- aside -->
             <nav>
                 <ul>
-                    <li><a href="<%=myctx%>/example/ex07_error.jsp">에러처리</a></li>
-                    <li><a href="<%=myctx%>/example/ex08_request.jsp">request1</a></li>
-                    <li><a href="<%=myctx%>/example/ex09_request.jsp?keyword=Java&pageNum=1">request2</a></li>
-                    <li><a href="<%=myctx%>/example/ex10_response.jsp">response</a></li>
-                    <li><a href="<%=myctx%>/login/sessionTest.jsp">Session</a></li>
-                    <li><a href="<%=myctx%>/login/cookieTest.jsp">Cookies</a></li>
+                    <li><a href="<%=myctx%>/uploadForm.do">파일 업로드</a></li>
                     <li><a href="<%=myctx%>/member/myPage.jsp">MyPage</a></li>
                 </ul>
             </nav>

@@ -42,7 +42,7 @@
 
                 <li><a href="<%=myctx %>/user/boardForm.do">Board 쓰기</a></li>
                 
-                <li><a href="<%=myctx %>/user/boardList.do">Board 목록</a></li>
+                <li><a href="<%=myctx %>/boardList.do">Board 목록</a></li>
                 
                 <li style="background-color:#19376D; border-radius:5px">
                 <a href="#" style='color:white'>a님 로그인 중...</a>
