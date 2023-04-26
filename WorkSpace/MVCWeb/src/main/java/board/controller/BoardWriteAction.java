@@ -5,16 +5,24 @@ import java.io.File;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import board.model.BoardDAO;
 import board.model.BoardVO;
 import common.controller.AbstractAction;
 import com.oreilly.servlet.*;
 import com.oreilly.servlet.multipart.*;
+import user.model.UserVO;
 
 public class BoardWriteAction extends AbstractAction {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
+		/*
+		 * HttpSession ses=req.getSession(); UserVO
+		 * user=(UserVO)ses.getAttribute("loginUser");
+		 */
+		UserVO user=this.getLoginUser(req);
+		
 		//1. post방식 한글처리==>필터를 만들어서 처리
 //		req.setCharacterEncoding("utf-8");
 		//2. 파일 업로드 처리 ==> 라이브러리 다운로드 후
@@ -33,7 +41,7 @@ public class BoardWriteAction extends AbstractAction {
 		
 		
 		//3. 사용자가 입력한 값 받기
-		String userid="hong"; //세션에서 로그인한 사용자 아이디
+		String userid=user.getUserid(); //세션에서 로그인한 사용자 아이디
 		String subject=mr.getParameter("subject");
 		String content=mr.getParameter("content");
 		//String filename=mr.getParameter("filename");	//[X]

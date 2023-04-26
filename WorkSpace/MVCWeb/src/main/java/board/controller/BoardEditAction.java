@@ -2,6 +2,7 @@ package board.controller;
 
 import javax.servlet.http.*;
 import common.controller.AbstractAction;
+import user.model.UserVO;
 
 import com.oreilly.servlet.*;
 import com.oreilly.servlet.multipart.*;
@@ -33,9 +34,10 @@ public class BoardEditAction extends AbstractAction {
 			this.setRedirect(true);
 			return;
 		}
+		UserVO user=new UserVO();
 		
 		String content=mr.getParameter("content");
-		String userid="hong";
+		String userid=user.getUserid();
 		String filename=mr.getFilesystemName("filename");
 		long filesize=0;
 		File file=mr.getFile("filename");

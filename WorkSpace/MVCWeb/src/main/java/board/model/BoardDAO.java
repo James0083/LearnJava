@@ -40,6 +40,24 @@ public class BoardDAO {
 			close();
 		}
 	}//-------------------------------️
+
+	public List<BoardVO> listBoard(int start, int end) throws SQLException {
+		try {
+			con=DBUtil.getCon();
+			StringBuilder buf=new StringBuilder("select * from ( ")
+					.append(" select rownum rn, A.* from ")
+					.append(" (select * from board order by num desc) A )")
+					.append(" where rn between ? and ?");
+			String sql=buf.toString();
+			ps=con.prepareStatement(sql);
+			ps.setInt(1, start);
+			ps.setInt(2, end);
+			rs=ps.executeQuery();
+			return makeList(rs);
+		} finally {
+			close();
+		}
+	}//-------------------------------️
 	
 	public List<BoardVO> makeList(ResultSet rs) throws SQLException {
 		List<BoardVO> arr=new ArrayList<>();
@@ -154,5 +172,6 @@ public class BoardDAO {
 			e.printStackTrace();
 		}
 	}//-----------------------
+
 	
 }

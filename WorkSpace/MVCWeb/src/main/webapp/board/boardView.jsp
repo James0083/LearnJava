@@ -53,9 +53,12 @@
     		</tr>
     		<tr>
     			<td colspan="4">
-    				<a href="boardList.do">글목록</a>|
-    				<a href="#" onclick="goEdit()">수정</a>|
-    				<a href="#" onclick="goDel()">삭제</a>
+    				<a href="boardList.do">글목록</a>
+    				<!-- 로그인한 사람과 글쓴이가 같다면 수정/삭제 링크 출력 -->
+    				<c:if test="${loginUser.userid eq board.userid}">
+	    				|<a href="#" onclick="goEdit()">수정</a>|
+	    				<a href="#" onclick="goDel()">삭제</a>
+	    			</c:if>
     			</td>
     		</tr>
     	</table>
