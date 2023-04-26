@@ -10,7 +10,7 @@
             <nav>
                 <ul>
                     <li><a href="<%=myctx%>/uploadForm.do">파일 업로드</a></li>
-                    <li><a href="<%=myctx%>/member/myPage.jsp">MyPage</a></li>
+                    <li><a href="<%=myctx%>/user/myPage.do">MyPage</a></li>
                 </ul>
             </nav>
         </aside>
