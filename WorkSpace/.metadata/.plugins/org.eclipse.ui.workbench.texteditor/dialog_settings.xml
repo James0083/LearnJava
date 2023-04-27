@@ -6,8 +6,9 @@
 		<item key="wholeword" value="true"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value=""/>
+		<item key="selection" value="cpage"/>
 		<list key="findhistory">
+			<item value="cpage"/>
 			<item value="IndexAdtion"/>
 			<item value="center"/>
 			<item value="Int()"/>
@@ -22,7 +23,6 @@
 			<item value="addComplete"/>
 			<item value="println"/>
 			<item value="setTestCase"/>
-			<item value="ToolsStr"/>
 		</list>
 		<list key="replacehistory">
 			<item value="HomeGUI"/>

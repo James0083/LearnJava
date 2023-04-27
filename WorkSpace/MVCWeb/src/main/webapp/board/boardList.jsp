@@ -63,8 +63,27 @@
 		font-weight:bold;
 	}
 </style>
+<script type="text/javascript">
+	const find_check = function(){
+		if(!$('select[name="findType"]').val()){
+			alert('검색 유형을 선택하세요');
+			$('select[name="findType"]').focus();
+			return false;
+		}
+		if(!$('#findKeyword').val()){
+			alert('검색어를 입력하세요');
+			$('#findKeyword').focus();
+			return false;
+		}
+		return true;
+	}
+</script>
+
     <div class="container">
     	<h1>Board List</h1>
+    	<c:if test="${findKeyword !=''}">
+    		<h2>검색어 : ${findKeyword}</h2>
+    	</c:if>
     	<br>
     	<p>
     	<a href="user/boardForm.do">글쓰기</a>|<a href="boardList.do">글목록</a>
@@ -74,6 +93,25 @@
     	<%-- ${requestScope.boardArr} --%>
     	
     	<div id="boardWrap">
+    		<!-- 검색 form ------------------------------- -->
+    		<div id='boardSearch' class='m2' style='margin-bottom:1em; text-align:center'>
+    			<form name='searchF' id='searchF' action='boardList.do' method='get' onsubmit='return find_check()'>
+    				<!-- hidden data cpage---------------------------- -->
+    				<input type="hidden" name="cpage" value="${cpage}">
+    				<!-- --------------------------------------------- -->
+    				
+    				<select name='findType' style='padding:5px'>
+    					<option value=''>::검색 유형::</option>
+    					<option value='1' <c:if test="${findType eq '1'}">selected</c:if>	>제  목</option>
+    					<option value='2' <c:if test="${findType eq '2'}">selected</c:if>	>작성자</option>
+    					<option value='3' <c:if test="${findType eq '3'}">selected</c:if>	>글내용</option>
+    				</select>
+    				<input type='text' name='findKeyword' id='findKeyword' style='width:40%'>
+    				<button>Search</button>
+    			</form>
+    		</div>
+    		<!-- ---------------------------------------- -->
+    		
     		<ul id="boardList">
     			<li>글번호</li>
     			<li>제목</li>
@@ -82,7 +120,7 @@
     			<li>조회수</li>
     			<!-- ------------------------- -->
     			<c:if test="${boardArr==null || empty boardArr }">
-	    			<li style='widt:100%'>
+	    			<li style='width:100%'>
 	    				데이터가 없습니다
 	    			</li>
     			</c:if>
@@ -121,19 +159,23 @@
     		<br><br>
     		<div class="pageWrap">
     			<ul class="paging">
-    				<li><a href="boardList.do?cpage=${cpage-1}">◀︎</a></li>
+	    			<c:if test="${cpage>1}">
+	    				<li><a href="boardList.do?cpage=${cpage-1}${qStr}">◀︎</a></li>
+	    			</c:if>
     				
 	    				<!-- <li class='current'><a>1</a></li> -->
     				<c:forEach var="i" begin="1" end="${pageCount}">
     					<c:if test="${cpage eq i}">
-    						<li class='current'><a href="boardList.do?cpage=${i}">${i}</a></li>
+    						<li class='current'><a href="boardList.do?cpage=${i}${qStr}">${i}</a></li>
     					</c:if>
     					<c:if test="${cpage ne i}">
-    						<li><a href="boardList.do?cpage=${i}">${i}</a></li>
+    						<li><a href="boardList.do?cpage=${i}${qStr}">${i}</a></li>
     					</c:if>
     				</c:forEach>
     				
-    				<li><a href="boardList.do?cpage=${cpage+1}">▶︎︎</a></li>
+	    			<c:if test="${cpage < pageCount}">
+	    				<li><a href="boardList.do?cpage=${cpage+1}${qStr}">▶︎︎</a></li>
+    				</c:if>
     			</ul>
     		</div>
     		<br><br>

@@ -24,9 +24,21 @@ public class BoardListAction extends AbstractAction {
 			cpage=1; //1페이지를 최소값으로 설정
 		}
 		
+		//검색유형과 검색어 받기
+		String findType=req.getParameter("findType");
+		String findKeyword=req.getParameter("findKeyword");
+		if(findType==null) {
+			findType="";
+		}
+		if(findKeyword==null) {
+			findKeyword="";
+		}
+		
+		
+		
 		BoardDAO dao=new BoardDAO();
-		//1. 총 게시글 수 가져오기
-		int totalCount=dao.getTotalCount();
+		//1. 총 게시글 수 (or 검색한 게시글 수) 가져오기
+		int totalCount=dao.getTotalCount(findType, findKeyword);
 		
 		//2. 한 페이지 당 보여줄 목록개수 정하기
 		int pageSize = 5;
@@ -60,13 +72,28 @@ public class BoardListAction extends AbstractAction {
 		
 		//글 목록 가져오기
 //		List<BoardVO> boardArr=dao.listBoard();		//<=페이징 처리하지 않을 때
-		List<BoardVO> boardArr=dao.listBoard(start, end);	//<=페이징 처리시
 		
+		List<BoardVO> boardArr=null;
+		
+		if(!findType.equals("") && !findKeyword.equals("")) {
+			//검색인 경우 => 검색 목록 가져오기
+			boardArr=dao.listBoard(start, end, findType, findKeyword);
+		}else {
+			//검색이 아닌 경우 => 전체 목록 가져오기
+			boardArr=dao.listBoard(start, end);	//<=페이징 처리시
+		}
+		//?cpage=1&findType=2findKeyword=수정
+		String queryStr="&findType="+findType+"&findKeyword="+findKeyword;
+		
+		System.out.println("cpage: "+cpage);
 		req.setAttribute("boardArr", boardArr);
 		req.setAttribute("totalCount", totalCount);
 		req.setAttribute("pageSize", pageSize);
 		req.setAttribute("pageCount", pageCount);
 		req.setAttribute("cpage", cpage);
+		req.setAttribute("findType", findType);
+		req.setAttribute("findKeyword", findKeyword);
+		req.setAttribute("qStr", queryStr);
 		
 		this.setViewPage("/board/boardList.jsp");
 		this.setRedirect(false);
